@@ -4,12 +4,12 @@
 using namespace std;
 
 struct tInvestimento{
-  float capital;
-  float taxaAnual;
+  string capital;
+  string taxaAnual;
   int tempo;
 //receber dados
 };
-tInvestimento criaInvestimento(float capital,float taxaAnual,int tempo){
+tInvestimento criaInvestimento(string capital,string taxaAnual,int tempo){
 
 tInvestimento novoInvestimento;
 
@@ -86,7 +86,7 @@ void imprimirLista(tLista* lista){
       cout << texto << endl;
 
       texto = "taxaAnal";
-      texto += to_string (lista -> marcador -> info.taxaAnual);
+      texto += lista -> marcador -> info.taxaAnual;
       cout << texto << endl;
 
       texto = "tempo";
@@ -112,7 +112,7 @@ void salvarListanoArquivo(tLista* lista, string nomeArquivo){
       cout << texto << endl;
 
       texto = "taxaAnal";
-      texto += to_string (lista -> marcador -> info.taxaAnual);
+      texto += lista -> marcador -> info.taxaAnual;
       cout << texto << endl;
 
       texto = "tempo";
@@ -145,7 +145,7 @@ void lerListadoArquivo(tLista* lista,string nomeArquivo){
   file.getline(texto, 200);
   tempo = getInfo(texto);
 
-  p= criaInvestimento(capital, taxaAnual, stoi(tempo));
+  p = criaInvestimento( capital, taxaAnual, stoi(tempo));
   incluirnoFim(lista,p);
   }
   file.close();
@@ -153,8 +153,28 @@ void lerListadoArquivo(tLista* lista,string nomeArquivo){
 
 int main() {
    int qnt, tempo;
-   float capital,taxaAnual;
+   string capital,taxaAnual;
+
+   cout << "Digite 1 para Gravar /n ou 2 para ler um banco de dador:" << endl;
    
    tInvestimento investimento;
    tLista* listadeinvestimento = new tLista;
+   iniciarlista(listadeinvestimento);
+   lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+  imprimirLista(listadeinvestimento);
+  
+  cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
+  cin >> qnt;
+  
+  for (int i = 0; i< qnt; i++){
+    cout << "Digite o valor do Capital a ser investido?:";
+    cin >> capital;
+    cout << "Digite o valor da Taxa de juros ao ano? ";
+    cin >> taxaAnual;
+    cout << "Digite o periodo do investimentos em anos?:";
+    cin >> tempo;
+
+    investimento = criaInvestimento(capital, taxaAnual, tempo);
+  }
+  salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
 }
