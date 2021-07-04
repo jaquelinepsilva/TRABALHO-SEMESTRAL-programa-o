@@ -154,19 +154,13 @@ void lerListadoArquivo(tLista* lista,string nomeArquivo){
 int main() {
    int qnt, tempo;
    string capital,taxaAnual;
+   tInvestimento investimento;
 
    cout << "Digite 1 para Gravar /n ou 2 para ler um banco de dador:" << endl;
-   
-   tInvestimento investimento;
-   tLista* listadeinvestimento = new tLista;
-   iniciarlista(listadeinvestimento);
-   lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
-  imprimirLista(listadeinvestimento);
-  
-  cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
+   cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
   cin >> qnt;
-  
-  for (int i = 0; i< qnt; i++){
+
+   for (int i = 0; i< qnt; i++){
     cout << "Digite o valor do Capital a ser investido?:";
     cin >> capital;
     cout << "Digite o valor da Taxa de juros ao ano? ";
@@ -176,5 +170,16 @@ int main() {
 
     investimento = criaInvestimento(capital, taxaAnual, tempo);
   }
+   
+   
+   tLista* listadeinvestimento = new tLista;
+   iniciarlista(listadeinvestimento);
+   lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+  imprimirLista(listadeinvestimento);
+  
+  
+  
+  
   salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+  
 }
