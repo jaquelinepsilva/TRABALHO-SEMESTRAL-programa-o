@@ -18,6 +18,22 @@ novoInvestimento.tempo=tempo;
 
 return novoInvestimento;
 }
+//criando os nós...
+
+struct tNo{
+  tInvestimento info;
+  tNo* proximo;
+};
+
+tNo* criaNo(tInvestimento item){
+  tNo* no = new tNo;
+
+  no->info=item;
+  no->proximo=NULL;
+
+  return no;
+}
+// CRIANDO A LISTA
 int main() {
    
 }
