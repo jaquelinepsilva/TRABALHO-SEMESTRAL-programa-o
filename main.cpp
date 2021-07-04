@@ -162,7 +162,11 @@ int main() {
    cin >> escolha;
    if (escolha == 1){
 
-   cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
+ 
+   iniciarlista(listadeinvestimento);
+   lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+  imprimirLista(listadeinvestimento);
+    cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
   cin >> qnt;
 
    for (int i = 0; i< qnt; i++){
@@ -175,13 +179,10 @@ int main() {
 
     investimento = criaInvestimento(capital, taxaAnual, tempo);
     incluirnoFim(listadeinvestimento, investimento);
-  }
-   iniciarlista(listadeinvestimento);
-   lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
-  imprimirLista(listadeinvestimento);
-  
+    
+  }salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
    }else{
- salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+ 
    }
   
   
