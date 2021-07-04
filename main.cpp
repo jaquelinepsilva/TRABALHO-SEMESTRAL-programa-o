@@ -62,7 +62,41 @@ bool estavazia(tLista* pLista){
 bool fimdaLista(tLista* pLista){
   return(pLista-> marcador == NULL);
 }
+void incluirnoFim(tLista* pLista,tInvestimento info){
+  tNo* no;
+  no=criaNo(info);
+  if(estavazia(pLista)){
+    pLista-> primeiro = no;
+  }
+  else {
+    pLista -> ultimo -> proximo = no;
+}
+pLista -> ultimo = no;
+pLista -> marcador = no;
+pLista -> tamanho ++;
+}
+// funcao imprimir lista encadeada.
+void imprimirLista(tLista* lista){
+  string texto;
+  if(!estavazia(lista)){
+    lista -> marcador = lista -> primeiro;
+    while(!fimdaLista(lista)){
+      texto = "Capital";
+      texto += lista -> marcador -> info.capital;
+      cout << texto << endl;
 
+      texto = "taxaAnal";
+      texto += to_string (lista -> marcador -> info.taxaAnual);
+      cout << texto << endl;
+
+      texto = "tempo";
+      texto += to_string (lista -> marcador -> info.tempo);
+      cout << texto << endl;
+
+      lista -> marcador = lista -> marcador -> proximo;
+    }
+  }
+}
 
 
 
