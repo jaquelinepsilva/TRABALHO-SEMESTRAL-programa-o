@@ -97,9 +97,64 @@ void imprimirLista(tLista* lista){
     }
   }
 }
+// salvando a lista no arquivo.
+void salvarListanoArquivo(tLista* lista, string nomeArquivo){
+  ofstream file;
+  string texto;
+  file.open(nomeArquivo,ios::out);
 
+  if(!estavazia(lista)){
+    lista -> marcador = lista -> primeiro;
 
+    while(!fimdaLista(lista)){
+      texto = "Capital";
+      texto += lista -> marcador -> info.capital;
+      cout << texto << endl;
+
+      texto = "taxaAnal";
+      texto += to_string (lista -> marcador -> info.taxaAnual);
+      cout << texto << endl;
+
+      texto = "tempo";
+      texto += to_string (lista -> marcador -> info.tempo);
+      cout << texto << endl;
+
+      lista -> marcador = lista -> marcador -> proximo;
+    }
+  }
+  file.close();
+}
+
+string getInfo(string linha){
+  string info;
+  info = linha.substr(linha.find(':')+2);
+  return info;
+}
+void lerListadoArquivo(tLista* lista,string nomeArquivo){
+  ifstream file;
+  char texto[200];
+  string capital,taxaAnual,tempo;
+  tInvestimento p;
+  file.open(nomeArquivo,ios::in);
+
+  while(file.getline(texto,200)){
+
+  capital = getInfo(texto);
+  file.getline(texto, 200);
+  taxaAnual = getInfo(texto);
+  file.getline(texto, 200);
+  tempo = getInfo(texto);
+
+  p= criaInvestimento(capital, taxaAnual, stoi(tempo));
+  incluirnoFim(lista,p);
+  }
+  file.close();
+}
 
 int main() {
+   int qnt, tempo;
+   float capital,taxaAnual;
    
+   tInvestimento investimento;
+   tLista* listadeinvestimento = new tLista;
 }
