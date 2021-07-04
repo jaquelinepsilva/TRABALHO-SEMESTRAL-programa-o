@@ -54,8 +54,14 @@ void iniciarlista(tLista* pLista){
 int tamanhodaLista(tLista* pLista){
   return pLista->tamanho;
 }
-
-
+//funcao para verificar se a lista esta vazia.
+bool estavazia(tLista* pLista){
+  return(pLista->tamanho==0);
+}
+// funcao de verificacao se é o fim da lista.
+bool fimdaLista(tLista* pLista){
+  return(pLista-> marcador == NULL);
+}
 
 
 
