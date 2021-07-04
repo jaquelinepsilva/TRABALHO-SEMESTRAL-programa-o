@@ -111,7 +111,7 @@ void salvarListanoArquivo(tLista* lista, string nomeArquivo){
       texto += lista -> marcador -> info.capital;
       cout << texto << endl;
 
-      texto = "taxaAnal";
+      texto = "taxaAnual";
       texto += lista -> marcador -> info.taxaAnual;
       cout << texto << endl;
 
@@ -152,11 +152,16 @@ void lerListadoArquivo(tLista* lista,string nomeArquivo){
 }
 
 int main() {
-   int qnt, tempo;
+
+   int qnt, tempo, escolha;
    string capital,taxaAnual;
    tInvestimento investimento;
+    tLista* listadeinvestimento = new tLista;
 
-   cout << "Digite 1 para Gravar /n ou 2 para ler um banco de dador:" << endl;
+   cout << "Digite 1 para Gravar /n ou 2 para ler um banco de dados:" << endl;
+   cin >> escolha;
+   if (escolha == 1){
+
    cout<<"QUANTOS INVESTIMENTOS DESEJA INSERIR " <<  endl;
   cin >> qnt;
 
@@ -165,21 +170,21 @@ int main() {
     cin >> capital;
     cout << "Digite o valor da Taxa de juros ao ano? ";
     cin >> taxaAnual;
-    cout << "Digite o periodo do investimentos em anos?:";
+    cout << "Digite o periodo do investimentos em anos?:\n";
     cin >> tempo;
 
     investimento = criaInvestimento(capital, taxaAnual, tempo);
+    incluirnoFim(listadeinvestimento, investimento);
   }
-   
-   
-   tLista* listadeinvestimento = new tLista;
    iniciarlista(listadeinvestimento);
    lerListadoArquivo(listadeinvestimento,"bancoDeDados2.txt");
   imprimirLista(listadeinvestimento);
   
+   }else{
+ salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+   }
   
   
-  
-  salvarListanoArquivo(listadeinvestimento,"bancoDeDados2.txt");
+ 
   
 }
